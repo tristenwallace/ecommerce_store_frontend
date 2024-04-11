@@ -1,12 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CurrencyPipe, NgFor } from '@angular/common';
+import { Product } from '../../models/product.model';
+import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
-  standalone: true,
-  imports: [],
   templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.scss'
+  styleUrls: ['./product-list.component.scss'],
+  standalone: true,
+  imports: [CurrencyPipe, NgFor]
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
+  products: Product[] = [];
 
+  constructor(private productService: ProductService, private cartService: CartService) { }
+
+  ngOnInit() {
+    this.productService.getProducts().subscribe((data: Product[]) => {
+      this.products = data;
+    });
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    alert('Product added to cart!');
+  }
 }
