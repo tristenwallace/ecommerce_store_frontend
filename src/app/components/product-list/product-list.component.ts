@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe, NgFor } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
@@ -9,7 +10,7 @@ import { CartService } from '../../services/cart.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
   standalone: true,
-  imports: [CurrencyPipe, NgFor],
+  imports: [CurrencyPipe, NgFor, RouterLink],
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];

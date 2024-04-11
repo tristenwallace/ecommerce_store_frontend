@@ -4,4 +4,5 @@
   <p>{{ product.description }}</p>
   <p>Price: {{ product.price | currency: 'USD' : 'symbol' }}</p>
   <button (click)="addToCart(product)">Add to Cart</button>
+  <a [routerLink]="['/products', product.id]">View Details</a>
 </div>

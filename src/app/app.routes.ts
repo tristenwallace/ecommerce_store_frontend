@@ -8,7 +8,12 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 export const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: 'products', component: ProductListComponent, title: 'Product List' },
-  { path: 'products/:id', component: ProductDetailsComponent, title: 'Product Details' },
+  {
+    path: 'products/:id',
+    component: ProductDetailsComponent,
+    title: 'Product Details',
+  },
   { path: 'cart', component: ShoppingCartComponent, title: 'Shopping Cart' },
-  { path: 'checkout', component: CheckoutComponent, title: 'Checkout' } 
+  { path: 'checkout', component: CheckoutComponent, title: 'Checkout' },
+  { path: 'products/:id', component: ProductDetailsComponent },
 ];
