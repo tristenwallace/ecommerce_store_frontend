@@ -25,5 +25,8 @@ export class ProductListComponent implements OnInit {
   addToCart(product: Product) {
     this.cartService.addToCart(product);
     alert('Product added to cart!');
+    
+    // Log the current cart items for debugging
+    console.log('Current cart items:', this.cartService.getCartItemsValueForDebug());
   }
 }

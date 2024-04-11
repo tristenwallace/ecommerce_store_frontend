@@ -6,29 +6,34 @@ import { Product } from '../models/product.model';
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: Product[] = [];
   private cartSubject = new BehaviorSubject<Product[]>([]);
+  private cartItems: Product[] = [];
 
   getCartItems() {
     return this.cartSubject.asObservable();
   }
 
   addToCart(product: Product) {
-    this.cartItems.push(product);
-    this.cartSubject.next(this.cartItems);
+    this.cartItems = [...this.cartItems, product];
+    this.cartSubject.next(this.cartItems);  // Emit the updated cart items
   }
 
   removeFromCart(product: Product) {
     this.cartItems = this.cartItems.filter(item => item.id !== product.id);
-    this.cartSubject.next(this.cartItems);
+    this.cartSubject.next(this.cartItems);  // Emit the updated cart items
   }
 
   clearCart() {
     this.cartItems = [];
-    this.cartSubject.next(this.cartItems);
+    this.cartSubject.next(this.cartItems);  // Emit the updated cart items
   }
 
   calculateTotal() {
     return this.cartItems.reduce((acc, product) => acc + product.price, 0);
   }
+
+  getCartItemsValueForDebug(): Product[] {
+    return this.cartSubject.getValue();
+  }
 }
+
