@@ -1,7 +1,7 @@
 <div *ngIf="product">
-    <img [src]="product.url" alt="{{ product.name }}" />
-    <h2>{{ product.name }}</h2>
-    <p>{{ product.description }}</p>
-    <p>Price: {{ product.price | currency: 'USD' : 'symbol' }}</p>
-    <a [routerLink]="['/products']">Back to all products</a>
+  <img [src]="product.url" alt="{{ product.name }}" />
+  <h2>{{ product.name }}</h2>
+  <p>{{ product.description }}</p>
+  <p>Price: {{ product.price | currency: 'USD' : 'symbol' }}</p>
+  <a [routerLink]="['/products']">Back to all products</a>
 </div>

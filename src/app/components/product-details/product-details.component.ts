@@ -7,7 +7,7 @@ import { Product } from '../../models/product.model';
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [ NgIf, RouterLink, CurrencyPipe ],
+  imports: [NgIf, RouterLink, CurrencyPipe],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })

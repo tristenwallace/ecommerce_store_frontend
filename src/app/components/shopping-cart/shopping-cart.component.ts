@@ -21,4 +21,12 @@ export class ShoppingCartComponent implements OnInit {
       console.log('Current cart items:', items);
     });
   }
+
+  removeItem(item: Product) {
+    this.cartService.removeFromCart(item);
+  }
+
+  calculateTotal(): number {
+    return this.cartService.calculateTotal();
+  }
 }

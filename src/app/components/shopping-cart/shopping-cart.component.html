@@ -1,3 +1,14 @@
-<div *ngFor="let item of cartItems">
-  <p>{{ item.name }} - {{ item.price | currency: 'USD' : 'symbol' }}</p>
+<div *ngFor="let item of cartItems; let i = index">
+  <div>
+    <h3>{{ item.name }}</h3>
+    <p>{{ item.description }}</p>
+    <p>Price: {{ item.price | currency: 'USD' : 'symbol' }}</p>
+    <button (click)="removeItem(item)">Remove</button>
+  </div>
+</div>
+
+<div class="cart-summary">
+  <h3>Cart Summary</h3>
+  <p>Total Items: {{ cartItems.length }}</p>
+  <p>Total Price: {{ calculateTotal() | currency: 'USD' : 'symbol' }}</p>
 </div>
