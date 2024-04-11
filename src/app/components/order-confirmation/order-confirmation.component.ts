@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './order-confirmation.component.html',
-  styleUrl: './order-confirmation.component.scss'
+  styleUrl: './order-confirmation.component.scss',
 })
-export class OrderConfirmationComponent {
-
-}
+export class OrderConfirmationComponent {}

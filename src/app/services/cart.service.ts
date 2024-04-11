@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Product } from '../models/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   private cartSubject = new BehaviorSubject<Product[]>([]);
@@ -15,17 +15,17 @@ export class CartService {
 
   addToCart(product: Product) {
     this.cartItems = [...this.cartItems, product];
-    this.cartSubject.next(this.cartItems);  // Emit the updated cart items
+    this.cartSubject.next(this.cartItems); // Emit the updated cart items
   }
 
   removeFromCart(product: Product) {
-    this.cartItems = this.cartItems.filter(item => item.id !== product.id);
-    this.cartSubject.next(this.cartItems);  // Emit the updated cart items
+    this.cartItems = this.cartItems.filter((item) => item.id !== product.id);
+    this.cartSubject.next(this.cartItems); // Emit the updated cart items
   }
 
   clearCart() {
     this.cartItems = [];
-    this.cartSubject.next(this.cartItems);  // Emit the updated cart items
+    this.cartSubject.next(this.cartItems); // Emit the updated cart items
   }
 
   calculateTotal() {
@@ -36,4 +36,3 @@ export class CartService {
     return this.cartSubject.getValue();
   }
 }
-

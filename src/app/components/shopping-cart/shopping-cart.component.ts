@@ -8,15 +8,15 @@ import { Product } from '../../models/product.model';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss'],
   standalone: true,
-  imports: [CurrencyPipe, NgFor]
+  imports: [CurrencyPipe, NgFor],
 })
 export class ShoppingCartComponent implements OnInit {
   cartItems: Product[] = [];
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartService.getCartItems().subscribe(items => {
+    this.cartService.getCartItems().subscribe((items) => {
       this.cartItems = items;
       console.log('Current cart items:', items);
     });
