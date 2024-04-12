@@ -1,4 +1,3 @@
-
 <div class="cart-container">
   <!-- Product List Card -->
   <div class="cart-item-container">
@@ -26,45 +25,105 @@
       <p>Total Price: {{ calculateTotal() | currency: 'USD' : 'symbol' }}</p>
     </div>
 
-    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="checkout-form">
+    <form
+      [formGroup]="checkoutForm"
+      (ngSubmit)="onSubmit()"
+      class="checkout-form"
+    >
       <h2>Checkout</h2>
       <div class="form-group">
-        <input type="text" id="name" class="form-control" placeholder="Enter your name" formControlName="name" />
-        <div *ngIf="checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched">
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          placeholder="Enter your name"
+          formControlName="name"
+        />
+        <div
+          *ngIf="
+            checkoutForm.get('name')?.invalid &&
+            checkoutForm.get('name')?.touched
+          "
+        >
           Name is required.
         </div>
       </div>
 
       <div class="form-group">
-        <input type="text" id="address" class="form-control" placeholder="Enter your address" formControlName="address" />
-        <div *ngIf="checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched">
+        <input
+          type="text"
+          id="address"
+          class="form-control"
+          placeholder="Enter your address"
+          formControlName="address"
+        />
+        <div
+          *ngIf="
+            checkoutForm.get('address')?.invalid &&
+            checkoutForm.get('address')?.touched
+          "
+        >
           Address is required.
         </div>
       </div>
 
       <div class="form-group">
-        <input type="text" id="creditCardNumber" class="form-control" placeholder="Credit card number" formControlName="creditCardNumber" />
-        <div *ngIf="checkoutForm.get('creditCardNumber')?.invalid && checkoutForm.get('creditCardNumber')?.touched">
+        <input
+          type="text"
+          id="creditCardNumber"
+          class="form-control"
+          placeholder="Credit card number"
+          formControlName="creditCardNumber"
+        />
+        <div
+          *ngIf="
+            checkoutForm.get('creditCardNumber')?.invalid &&
+            checkoutForm.get('creditCardNumber')?.touched
+          "
+        >
           Valid Credit Card Number is required.
         </div>
       </div>
 
       <div class="form-group">
-        <input type="text" id="creditCardExpiration" class="form-control" placeholder="MM/YY" formControlName="creditCardExpiration" />
-        <div *ngIf="checkoutForm.get('creditCardExpiration')?.invalid && checkoutForm.get('creditCardExpiration')?.touched">
+        <input
+          type="text"
+          id="creditCardExpiration"
+          class="form-control"
+          placeholder="MM/YY"
+          formControlName="creditCardExpiration"
+        />
+        <div
+          *ngIf="
+            checkoutForm.get('creditCardExpiration')?.invalid &&
+            checkoutForm.get('creditCardExpiration')?.touched
+          "
+        >
           Expiration date is required.
         </div>
       </div>
 
       <div class="form-group">
-        <input type="text" id="creditCardCVV" class="form-control" placeholder="CVV" formControlName="creditCardCVV" />
-        <div *ngIf="checkoutForm.get('creditCardCVV')?.invalid && checkoutForm.get('creditCardCVV')?.touched">
+        <input
+          type="text"
+          id="creditCardCVV"
+          class="form-control"
+          placeholder="CVV"
+          formControlName="creditCardCVV"
+        />
+        <div
+          *ngIf="
+            checkoutForm.get('creditCardCVV')?.invalid &&
+            checkoutForm.get('creditCardCVV')?.touched
+          "
+        >
           CVV is required.
         </div>
       </div>
 
-      <button type="submit" class="btn" [disabled]="!checkoutForm.valid">Place Order</button>
-    </form>    
+      <button type="submit" class="btn" [disabled]="!checkoutForm.valid">
+        Place Order
+      </button>
+    </form>
   </div>
 </div>
-

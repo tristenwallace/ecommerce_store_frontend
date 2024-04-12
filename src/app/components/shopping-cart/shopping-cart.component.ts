@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { OrderService } from '../../services/order.service';
 import { Product } from '../../models/product.model';
 import {
   FormBuilder,
@@ -24,14 +25,24 @@ export class ShoppingCartComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public cartService: CartService,
-    private router: Router
+    private router: Router,
+    private orderService: OrderService
   ) {
     this.checkoutForm = this.fb.group({
       name: ['', Validators.required],
       address: ['', Validators.required],
-      creditCardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]], // Example simple validation
-      creditCardExpiration: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/)]], // MM/YY format
-      creditCardCVV: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]] // Example 3-digit CVV
+      creditCardNumber: [
+        '',
+        [Validators.required, Validators.pattern(/^\d{16}$/)],
+      ], // Example simple validation
+      creditCardExpiration: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/),
+        ],
+      ], // MM/YY format
+      creditCardCVV: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]], // Example 3-digit CVV
     });
   }
 
@@ -52,7 +63,15 @@ export class ShoppingCartComponent implements OnInit {
 
   onSubmit() {
     if (this.checkoutForm.valid) {
-      console.log('Form Data: ', this.checkoutForm.value);
+      const total = this.calculateTotal();
+      const { name } = this.checkoutForm.value;
+
+      // Set the order details
+      this.orderService.setOrderDetails({
+        name: name,
+        total: total,
+      });
+
       this.cartService.clearCart();
 
       // Navigate to the order confirmation page

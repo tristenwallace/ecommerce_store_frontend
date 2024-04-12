@@ -1,21 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
 html {
-  height: 100%;  // Keeps html at the full height of the viewport
+  height: 100%; // Keeps html at the full height of the viewport
 }
 
 body {
-  min-height: 100%;  // Allows body to expand beyond the viewport if content is longer
+  min-height: 100%; // Allows body to expand beyond the viewport if content is longer
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
-  font-size: 16px;  // Adjust as needed
-  line-height: 1.5;  // Improves readability
+  font-size: 16px; // Adjust as needed
+  line-height: 1.5; // Improves readability
 }
-
 
 .btn {
   padding: 10px 20px;
-  background-color: #333; 
+  background-color: #333;
   color: white;
   border: none;
   border-radius: 5px;

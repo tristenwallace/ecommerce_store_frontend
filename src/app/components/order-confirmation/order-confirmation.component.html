@@ -1,6 +1,14 @@
-<div class="order-confirmation">
-  <h2>Thank you for your order!</h2>
-  <p>Your order has been placed successfully.</p>
-  <!-- Display any order details we will have saved from the checkout form -->
-  <a routerLink="/">Return Home</a>
+<div class="confirmation-container">
+  <div class="confirmation-items">
+    <h1 class="confirmation-header">Order Confirmation</h1>
+    <p class="confirmation-item">
+      Thank you, {{ customerName }}! Your order has been placed successfully.
+    </p>
+    <p class="confirmation-item">
+      Order Total: {{ orderTotal | currency: 'USD' }}
+    </p>
+    <button class="btn" (click)="navigateToProductList()">
+      Back to Product List
+    </button>
+  </div>
 </div>
