@@ -1,7 +1,14 @@
-<div *ngIf="product">
-  <img [src]="product.url" alt="{{ product.name }}" />
-  <h2>{{ product.name }}</h2>
-  <p>{{ product.description }}</p>
-  <p>Price: {{ product.price | currency: 'USD' : 'symbol' }}</p>
-  <a [routerLink]="['/products']">Back to all products</a>
+<!-- Product Details Container -->
+<div *ngIf="product" class="detail-container">
+  <!-- Product Image -->
+  <img [src]="product.url" alt="{{ product.name }}" class="product-image" />
+
+  <!-- Product Details Side -->
+  <div class="detail-item">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Price: {{ product.price | currency: 'USD' : 'symbol' }}</p>
+    <button class="btn" (click)="addToCart(product)">Add to Cart</button>
+    <a [routerLink]="['/products']" class="back-link">Back to all products</a>
+  </div>
 </div>

@@ -1,0 +1,44 @@
+.product-image {
+  border-radius: 10px;
+  width: 320px; // Ensure the image is not too large
+  max-width: 100%; // Ensures responsiveness
+  height: auto; // Maintains aspect ratio
+}
+
+.select-input {
+  width: 108px;
+  margin-bottom: 8px;
+}
+
+.detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 64px;
+  flex-wrap: wrap; // Ensures responsiveness on smaller screens
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.detail-item {
+  margin-left: 128px;
+  margin-right: 128px;
+
+  @media (max-width: 768px) {
+    margin-left: 20px; // Reduces margin for smaller screens
+    margin-right: 20px;
+  }
+}
+
+.back-link {
+  display: block;
+  margin-top: 20px;
+  color: #007bff; // Bootstrap link color for consistency
+  text-decoration: none; // Removes underline
+
+  &:hover {
+    text-decoration: underline; // Adds underline on hover for better UX
+  }
+}

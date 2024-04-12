@@ -3,6 +3,7 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
 import { NgIf, CurrencyPipe } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -16,6 +17,7 @@ export class ProductDetailsComponent {
 
   constructor(
     private productService: ProductService,
+    private cartService: CartService,
     private route: ActivatedRoute
   ) {}
 
@@ -26,5 +28,10 @@ export class ProductDetailsComponent {
         this.product = product;
       });
     }
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    alert('Product added to cart!');
   }
 }
