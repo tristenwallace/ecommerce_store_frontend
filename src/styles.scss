@@ -33,3 +33,39 @@ body {
     box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.5);
   }
 }
+
+/* Styles for select dropdown */
+.select-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 16px;
+  margin-top: 8px;
+  -webkit-appearance: none; /* Removes default styling by the browser for select elements */
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: #6658dd; /* Example focus color */
+  }
+
+  &::after { /* You can use pseudo-elements for custom dropdown arrows */
+    content: '▼';
+    font-size: 12px;
+    color: #333;
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 6px); /* Center vertically */
+    pointer-events: none;
+  }
+}
+
+/* Styles for the container to position the pseudo-element correctly */
+.select-container {
+  position: relative;
+  display: block;
+}

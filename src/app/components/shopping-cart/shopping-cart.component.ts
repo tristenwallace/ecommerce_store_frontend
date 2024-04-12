@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
-import { CartService } from '../../services/cart.service';
+import { CartItem, CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
 import { Product } from '../../models/product.model';
 import {
@@ -9,6 +9,7 @@ import {
   FormGroup,
   Validators,
   ReactiveFormsModule,
+  FormsModule
 } from '@angular/forms';
 
 @Component({
@@ -16,10 +17,10 @@ import {
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss'],
   standalone: true,
-  imports: [CurrencyPipe, NgFor, NgIf, ReactiveFormsModule],
+  imports: [CurrencyPipe, NgFor, NgIf, ReactiveFormsModule, FormsModule],
 })
 export class ShoppingCartComponent implements OnInit {
-  cartItems: Product[] = [];
+  cartItems: CartItem[] = [];
   checkoutForm: FormGroup;
 
   constructor(
@@ -49,19 +50,26 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getCartItems().subscribe((items) => {
       this.cartItems = items;
-      console.log('Current cart items:', items);
     });
+  }
+
+  updateQuantity(item: CartItem, quantity: number): void {
+    this.cartService.updateCart(item.product, quantity); 
   }
 
   removeItem(item: Product) {
     this.cartService.removeFromCart(item);
   }
 
-  calculateTotal(): number {
-    return this.cartService.calculateTotal();
+  calculateTotalItems(): number {
+    return this.cartItems.reduce((total, item) => total + item.quantity, 0);
   }
 
-  onSubmit() {
+  calculateTotal(): number {
+    return this.cartItems.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+  }
+
+  onSubmit(): void {
     if (this.checkoutForm.valid) {
       const total = this.calculateTotal();
       const { name } = this.checkoutForm.value;

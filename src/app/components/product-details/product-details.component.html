@@ -8,7 +8,12 @@
     <h2>{{ product.name }}</h2>
     <p>{{ product.description }}</p>
     <p>Price: {{ product.price | currency: 'USD' : 'symbol' }}</p>
-    <button class="btn" (click)="addToCart(product)">Add to Cart</button>
+    <div class="select-container">
+      <select class="select-input" [(ngModel)]="quantity">
+        <option *ngFor="let qty of quantities" [ngValue]="qty">{{ qty }}</option>
+      </select>
+    </div>
+    <button (click)="addToCart(product)" class="btn">Add to Cart</button>
     <a [routerLink]="['/products']" class="back-link">Back to all products</a>
   </div>
 </div>
