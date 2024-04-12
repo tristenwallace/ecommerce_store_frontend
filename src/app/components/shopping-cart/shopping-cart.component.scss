@@ -1,0 +1,90 @@
+// shopping-cart.component.scss
+
+img {
+  width: 100px;
+  border-radius: 10px;
+}
+
+.form-margin {
+  margin-bottom: 12px;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  text-align: center;
+
+  &-details {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: left;
+    margin-left: 80px;
+  }
+}
+
+.number-input {
+  width: 80px;
+  text-align: center;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; // Good for spacing out items on wider screens
+  align-items: center; // Centers items vertically in the row layout
+  margin: 64px 50px;
+  padding: 0 20px 64px; // Consistent padding on all sides
+
+  @media (max-width: 1080px) {
+    flex-direction: column;
+    justify-content: center; // Vertically centers in column layout
+    align-items: center; // Ensures items are horizontally centered in column layout
+    margin: 32px 20px; // Reduced margin for smaller screens
+  }
+}
+
+.cart-item-container {
+  display: flex;
+  width: 100%; // Ensures it takes full width available in the column layout
+  justify-content: center; // Horizontally centers items within the container
+  align-items: center; // Vertically aligns items which is crucial if they wrap
+}
+
+.checkout-panel {
+  width: 60%; // Appropriate for wider screens
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  align-self: center; // Ensures that the checkout panel is centered in the flex layout
+
+  @media (max-width: 1080px) {
+    width: 60%; // Takes full width on smaller screens to use available space
+    margin-top: 10px;
+    padding: 15px; // Slightly reduces padding to fit smaller screens better
+  }
+}
+
+.empty-cart-message {
+  width: 100%; // Ensures the message takes full width
+  justify-content: center;
+  text-align: center;
+}
+
