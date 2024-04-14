@@ -3,13 +3,23 @@
   <div class="cart-item-container">
     <div class="product-list">
       <div *ngFor="let item of cartItems; let i = index" class="cart-item">
-        <img class="product-image" [src]="item.product.url" alt="{{ item.product.name }}" />
+        <img
+          class="product-image"
+          [src]="item.product.url"
+          alt="{{ item.product.name }}"
+        />
         <div class="cart-item-details">
           <h3>{{ item.product.name }}</h3>
           <p>{{ item.product.price | currency: 'USD' : 'symbol' }}</p>
           <div class="select-container">
-            <select class="select-input" [(ngModel)]="item.quantity" (ngModelChange)="updateQuantity(item, $event)">
-              <option *ngFor="let qty of [1, 2, 3, 4, 5]" [value]="qty">{{ qty }}</option>
+            <select
+              class="select-input"
+              [(ngModel)]="item.quantity"
+              (ngModelChange)="updateQuantity(item, $event)"
+            >
+              <option *ngFor="let qty of [1, 2, 3, 4, 5]" [value]="qty">
+                {{ qty }}
+              </option>
             </select>
           </div>
           <button (click)="removeItem(item.product)" class="btn">Remove</button>

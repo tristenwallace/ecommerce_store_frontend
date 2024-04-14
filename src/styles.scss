@@ -53,7 +53,8 @@ body {
     border-color: #6658dd; /* Example focus color */
   }
 
-  &::after { /* You can use pseudo-elements for custom dropdown arrows */
+  &::after {
+    /* You can use pseudo-elements for custom dropdown arrows */
     content: '▼';
     font-size: 12px;
     color: #333;

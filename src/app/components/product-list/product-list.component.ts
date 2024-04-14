@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit {
     this.productService.getProducts().subscribe((data: Product[]) => {
       this.products = data;
       // Initialize the selectedQuantities object for each product
-      this.products.forEach(product => {
+      this.products.forEach((product) => {
         this.selectedQuantities[product.id] = 1; // Default quantity set to 1
       });
     });

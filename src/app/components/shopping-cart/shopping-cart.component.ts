@@ -9,7 +9,7 @@ import {
   FormGroup,
   Validators,
   ReactiveFormsModule,
-  FormsModule
+  FormsModule,
 } from '@angular/forms';
 
 @Component({
@@ -54,7 +54,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   updateQuantity(item: CartItem, quantity: number): void {
-    this.cartService.updateCart(item.product, quantity); 
+    this.cartService.updateCart(item.product, quantity);
   }
 
   removeItem(item: Product) {
@@ -66,7 +66,10 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   calculateTotal(): number {
-    return this.cartItems.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+    return this.cartItems.reduce(
+      (total, item) => total + item.product.price * item.quantity,
+      0
+    );
   }
 
   onSubmit(): void {
