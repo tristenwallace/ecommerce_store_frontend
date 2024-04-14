@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import type { Observable } from 'rxjs';
 
-interface OrderDetails {
+export interface OrderDetails {
   name: string;
   address: string;
   total: number;
@@ -11,13 +12,13 @@ interface OrderDetails {
   providedIn: 'root',
 })
 export class OrderService {
-  private orderDetails = new BehaviorSubject<{ name: string; total: number }>({
+  readonly orderDetails = new BehaviorSubject<{ name: string; total: number }>({
     name: '',
     total: 0,
   });
 
   // set order details
-  setOrderDetails(details: { name: string; total: number }) {
+  setOrderDetails(details: { name: string; total: number }): void {
     this.orderDetails.next(details);
   }
 

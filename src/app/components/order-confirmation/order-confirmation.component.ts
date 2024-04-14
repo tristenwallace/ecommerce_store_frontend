@@ -1,3 +1,4 @@
+import type { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderService } from '../../services/order.service';
@@ -10,23 +11,23 @@ import { CurrencyPipe } from '@angular/common';
   templateUrl: './order-confirmation.component.html',
   styleUrl: './order-confirmation.component.scss',
 })
-export class OrderConfirmationComponent {
+export class OrderConfirmationComponent implements OnInit {
   customerName: string = '';
   orderTotal: number = 0;
 
   constructor(
-    private router: Router,
-    private orderService: OrderService
+    readonly router: Router,
+    readonly orderService: OrderService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.orderService.getOrderDetails().subscribe((details) => {
       this.customerName = details.name;
       this.orderTotal = details.total;
     });
   }
 
-  navigateToProductList() {
+  navigateToProductList(): void {
     this.router.navigateByUrl('/products');
   }
 }

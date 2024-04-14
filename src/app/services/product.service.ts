@@ -1,14 +1,15 @@
+import type { Observable } from 'rxjs';
+import type { Product } from '../models/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private http: HttpClient) {}
+  constructor(readonly http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('/assets/data.json');

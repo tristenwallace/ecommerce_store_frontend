@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import type { CartItem } from '../../services/cart.service';
+import type { Product } from '../../models/product.model';
+import { Component } from '@angular/core';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
-import { CartItem, CartService } from '../../services/cart.service';
+import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
-import { Product } from '../../models/product.model';
 import {
   FormBuilder,
   FormGroup,
@@ -24,10 +26,10 @@ export class ShoppingCartComponent implements OnInit {
   checkoutForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    readonly fb: FormBuilder,
     public cartService: CartService,
-    private router: Router,
-    private orderService: OrderService
+    readonly router: Router,
+    readonly orderService: OrderService
   ) {
     this.checkoutForm = this.fb.group({
       name: ['', Validators.required],
@@ -57,7 +59,7 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.updateCart(item.product, quantity);
   }
 
-  removeItem(item: Product) {
+  removeItem(item: Product): void {
     this.cartService.removeFromCart(item);
   }
 
@@ -72,21 +74,28 @@ export class ShoppingCartComponent implements OnInit {
     );
   }
 
-  onSubmit(): void {
+  onSubmit = (): void => {
     if (this.checkoutForm.valid) {
       const total = this.calculateTotal();
       const { name } = this.checkoutForm.value;
 
       // Set the order details
       this.orderService.setOrderDetails({
-        name: name,
-        total: total,
+        name,
+        total,
       });
 
       this.cartService.clearCart();
 
       // Navigate to the order confirmation page
-      this.router.navigate(['/order-confirmation']);
+      this.router
+        .navigate(['/order-confirmation'])
+        .then(() => {
+          console.log('Navigation succeeded!');
+        })
+        .catch((error) => {
+          console.error('Navigation error:', error);
+        });
     }
-  }
+  };
 }
