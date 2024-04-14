@@ -55,8 +55,9 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
-  updateQuantity(item: CartItem, quantity: number): void {
-    this.cartService.updateCart(item.product, quantity);
+  updateQuantity(item: CartItem, quantity: string): void {
+    const numericQuantity = Number(quantity); // Convert the string to a number
+    this.cartService.updateCart(item.product, numericQuantity);
   }
 
   removeItem(item: Product): void {
