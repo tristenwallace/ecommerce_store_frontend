@@ -1,17 +1,9 @@
 <div class="product-index">
-  <div *ngFor="let product of products" class="product-container">
-    <a [routerLink]="['/products', product.id]">
-      <img class="product-image" [src]="product.url" alt="{{ product.name }}" />
-    </a>
-    <h2>{{ product.name }}</h2>
-    <p>{{ product.price | currency: 'USD' : 'symbol' }}</p>
-    <div class="select-container">
-      <select class="select-input" [(ngModel)]="selectedQuantities[product.id]">
-        <option *ngFor="let qty of quantities" [ngValue]="qty">
-          {{ qty }}
-        </option>
-      </select>
-    </div>
-    <button (click)="addToCart(product)" class="btn">Add to Cart</button>
-  </div>
+  <app-product-item
+    class="product-container"
+    *ngFor="let product of products"
+    [product]="product"
+    (addToCartEvent)="handleAddToCart($event)"
+  >
+  </app-product-item>
 </div>
